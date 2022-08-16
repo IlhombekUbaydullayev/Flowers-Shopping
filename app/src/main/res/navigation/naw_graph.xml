@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    tools:ignore="InvalidNavigation">
+
+    <action
+        android:id="@+id/action_global_splashFlow"
+        app:destination="@id/splashFlowFragment"
+        app:popUpTo="@id/nav_graph" />
+
+    <fragment
+        android:id="@+id/splashFlowFragment"
+        android:name="com.example.shoppingflowers.main.splash.SplashFlowFragment"
+        android:label="flow_fragment_splash"
+        tools:layout="@layout/flow_fragment_splash" />
+
+    <action
+        android:id="@+id/action_global_introFlow"
+        app:destination="@id/introFlowFragment"
+        app:popUpTo="@id/nav_graph" />
+
+    <fragment
+        android:id="@+id/introFlowFragment"
+        android:name="com.example.shoppingflowers.main.IntroFlowFragment"
+        android:label="flow_fragment_intro"
+        tools:layout="@layout/flow_fragment_intro" />
+
+<!--    <action-->
+<!--        android:id="@+id/action_global_introFlowSecond"-->
+<!--        app:destination="@id/introFlowFragment"-->
+<!--        app:popUpTo="@id/nav_graph" />-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/introFlowFragmentXL"-->
+<!--        android:name="com.example.shoppingflowers.main.intro_secondary.IntroFragmentXL"-->
+<!--        android:label="flow_fragment_introXL"-->
+<!--        tools:layout="@layout/flow_fragment_introxl" />-->
+
+</navigation>

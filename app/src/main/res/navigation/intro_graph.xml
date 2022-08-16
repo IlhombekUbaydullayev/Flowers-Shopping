@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/intro_graph"
+    app:startDestination="@id/introFragment">
+
+    <fragment
+        android:id="@+id/introFragment"
+        android:name="com.example.shoppingflowers.main.introp.IntroFragment"
+        android:label="fragment_introXL"
+        tools:layout="@layout/fragment_intro" >
+
+        <action
+            android:id="@+id/action_introFragment_to_introFragmentSecond"
+            app:destination="@id/introFragmentXL" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/introFragmentXL"
+        android:name="com.example.shoppingflowers.main.intro.IntroFragmentXL"
+        android:label="fragment_introXL"
+        tools:layout="@layout/fragment_intro_secondary" >
+
+<!--        <action-->
+<!--            android:id="@+id/action_introFragmentXL_to_introFragment"-->
+<!--            app:destination="@id/introFragment" />-->
+    </fragment>
+</navigation>
