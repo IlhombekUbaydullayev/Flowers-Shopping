@@ -35,6 +35,9 @@ class MainActivity : AppCompatActivity() {
 //            AuthManager.isAuthorized == 2 -> {
 //                navGraph.setStartDestination(R.id.introFlowFragmentXL)
 //            }
+            AuthManager.isAuthorized == 3 -> {
+                navGraph.setStartDestination(R.id.mainFlowFragment)
+            }
         }
         navController.graph = navGraph
     }

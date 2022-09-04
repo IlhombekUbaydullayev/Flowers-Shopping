@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:motion="http://schemas.android.com/tools">
+
+    <Transition
+        app:constraintSetStart="@+id/start"
+        app:constraintSetEnd="@+id/end"
+        app:duration="100"
+        app:motionInterpolator="linear">
+        <OnClick
+            app:targetId="@+id/action"
+            app:dragDirection="dragUp"/>
+
+    </Transition>
+
+    <ConstraintSet android:id="@id/start">
+        <Constraint
+            android:id="@id/action">
+            <CustomAttribute
+                app:attributeName="cross"
+                app:customColorValue="#175416" />\
+        </Constraint>
+        <Constraint
+            android:id="@id/tvHelloWorld">
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customColorValue="#175416" />
+        </Constraint>
+
+        <Constraint
+            android:id="@id/guidline">
+            <CustomAttribute
+                app:attributeName="crosfollow"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/action">
+            <CustomAttribute
+                app:attributeName="backgroundColor"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/actionB">
+            <CustomAttribute
+                app:attributeName="backgroundColor"/>
+            <PropertySet android:visibility="gone"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/guidlineS">
+            <CustomAttribute
+                app:attributeName="guidlineS"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/swipeLayout"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@id/end">
+        <Constraint
+            android:id="@id/action">
+            <CustomAttribute
+                app:attributeName="cross"
+                app:customColorValue="#175416" />
+        </Constraint>
+        <Constraint
+            android:id="@id/tvHelloWorld"
+            >
+            <CustomAttribute
+                app:attributeName="crossfade"
+                app:customColorValue="@android:color/white"/>
+            <Transform
+                android:translationY="160dp"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/guidline"
+            app:layout_constraintGuide_percent="0.85">
+            <CustomAttribute
+                app:attributeName="crosfollow" />/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/action">
+            <CustomAttribute
+                app:attributeName="backgroundColor"
+                app:customColorValue="@color/white"
+                app:customColorDrawableValue="@color/white"/>
+            <Transform android:rotation="90"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/actionB">
+            <CustomAttribute
+                app:attributeName="backgroundColor"/>
+            <PropertySet android:visibility="visible"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/guidlineS"
+            app:layout_constraintGuide_percent="0.16">
+            <CustomAttribute
+                app:attributeName="guidlineS"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@id/swipeLayout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <Transform
+                android:translationY="160dp"/>
+        </Constraint>
+    </ConstraintSet>
+
+</MotionScene>

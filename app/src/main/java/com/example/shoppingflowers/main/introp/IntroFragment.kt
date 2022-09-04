@@ -12,6 +12,9 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.shoppingflowers.R
 import com.example.shoppingflowers.adapter.IntroPageAdapter
 import com.example.shoppingflowers.databinding.FragmentIntroBinding
+import com.example.shoppingflowers.extencion.activityNavController
+import com.example.shoppingflowers.extencion.navigateSafely
+import com.example.shoppingflowers.manager.AuthManager
 import com.example.shoppingflowers.model.IntroPageItem
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -45,6 +48,10 @@ class IntroFragment : Fragment(R.layout.fragment_intro) {
             }
         }
         applyPageStateChanges()
+        binding.getStart.setOnClickListener {
+            AuthManager.isAuthorized = 3
+            activityNavController().navigateSafely(R.id.action_global_mainFlowFragment)
+        }
     }
 
     private fun applyPageStateChanges() {
