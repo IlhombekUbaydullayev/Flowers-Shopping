@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shopping Flowers</string>
+    <string name="str_flowers">Gullar</string>
+    <string name="str_skip">O`tkazib \nyuborish</string>
+    <string name="str_indicator_intro_desc">Pushti atirgullar</string>
+    <string name="str_indicator_intro_body">onlayn shopping market orqali</string>
+    <string name="str_indicator_intro_bodyX">o`zingizga yoqqan pushti</string>
+    <string name="str_indicator_intro_bodyXL">atirgullarni xarid qiling</string>
+    <string name="str_indicator_intro_desc2">Lilya gullari</string>
+    <string name="str_indicator_intro_bodyXL2">o`zingizga yoqqan lilya</string>
+    <string name="str_indicator_intro_desc3">Gullar bozori</string>
+    <string name="str_indicator_intro_bodyX3">o`zingizga yoqqan turli xil </string>
+    <string name="language">Til</string>
+    <string name="fruits">Mevalar</string>
+    <string name="cakes">Tortlar</string>
+    <string name="str_get_started">Boshlash</string>
+    <string name="str_search">qidiruv</string>
+</resources>

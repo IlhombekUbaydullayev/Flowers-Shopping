@@ -12,14 +12,6 @@
         android:id="@+id/textViewContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="24sp"
-            android:text="Hello"
-            android:layout_gravity="center"
-            android:textColor="@color/black"/>
     </FrameLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/swipeLayout"
@@ -28,20 +20,84 @@
         android:background="@drawable/vec" >
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/tvHelloWorld"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:background="@drawable/vector"
-        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@id/textViewContainer"
         app:layout_constraintEnd_toEndOf="@id/textViewContainer"
         app:layout_constraintStart_toStartOf="@id/textViewContainer"
-        app:layout_constraintTop_toTopOf="@id/textViewContainer" >
-
+        app:layout_constraintTop_toTopOf="@id/textViewContainer" />
+    <LinearLayout
+        android:id="@+id/ll_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/guidlin"
+        app:layout_constraintStart_toStartOf="@id/guidlineSSS">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_home"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"/>
     </LinearLayout>
-
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_center2"
+        app:layout_constraintTop_toBottomOf="@id/guidline_center"
+        app:layout_constraintStart_toStartOf="@id/guidlineSSS">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/textSize5"
+                android:weightSum="2"
+                android:layout_marginTop="15dp">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.8">
+                    <TextView
+                        android:id="@+id/tv_market"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/textSizeBody"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:textColor="#575454"
+                        android:text="Do'konlar ro'yxati : "/>
+                </LinearLayout>
+                <EditText
+                    android:id="@+id/et_search"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:background="@drawable/edittext_rounded_corners"
+                    android:drawableLeft="@android:drawable/ic_menu_search"
+                    android:hint="@string/str_search"
+                    android:layout_weight="1.2"
+                    android:textSize="@dimen/textSizeBody"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
+            </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_home3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/textSize70"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
     <ImageView
         android:id="@+id/action"
         android:layout_width="30dp"
@@ -65,24 +121,24 @@
         android:id="@+id/follow"
         android:layout_width="30dp"
         android:layout_height="30sp"
-        android:src="@drawable/love"
+        android:src="@mipmap/ic_heart"
         app:layout_constraintBottom_toTopOf="@id/guidlineS"
         app:layout_constraintEnd_toEndOf="@id/guidlineS"
         app:layout_constraintStart_toStartOf="@id/guidline" />
 
     <ImageView
         android:id="@+id/follows"
-        android:layout_width="32dp"
-        android:layout_height="32sp"
-        android:src="@drawable/shop"
+        android:layout_width="@dimen/textSize28"
+        android:layout_height="@dimen/textSize28"
+        android:src="@mipmap/ic_cart"
         app:layout_constraintBottom_toTopOf="@id/guidlineH"
         app:layout_constraintEnd_toEndOf="@id/guidlineS"
         app:layout_constraintStart_toStartOf="@id/guidlineSS" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="@dimen/textSize110"
+        android:layout_height="@dimen/textSize110"
         android:src="@drawable/logo"
         app:layout_constraintStart_toStartOf="@id/guidlineLogo"
         app:layout_constraintEnd_toEndOf="@id/guidlineLogo"
@@ -90,6 +146,96 @@
         app:layout_constraintBottom_toBottomOf="@id/guidlineH"/>
 
 
+    <LinearLayout
+        android:id="@+id/ll_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        app:layout_constraintBottom_toTopOf="@id/guidlines2"
+        app:layout_constraintStart_toStartOf="@id/guidlineSSS">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_v1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/iv_flower"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/flower"/>
+                <TextView
+                    android:id="@+id/tv_flower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/textSizeTitle"
+                    android:textColor="#FF0000"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/str_flowers"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_v2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/iv_flower2"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/birthdate"/>
+                <TextView
+                    android:id="@+id/tv_flower2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="@dimen/textSizeTitle"
+                    android:text="@string/cakes"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_v3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/iv_flower3"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/fruit"/>
+                <TextView
+                    android:id="@+id/tv_flower3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="@dimen/textSizeTitle"
+                    android:text="@string/fruits"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/iv_languages"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/textSize20">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_language_24"/>
+            <TextView
+                android:id="@+id/tv_languages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/textSizeTitle"
+                android:text="@string/language"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidline"
@@ -104,6 +250,27 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidlin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidlines2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidline_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.42" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidlineH"

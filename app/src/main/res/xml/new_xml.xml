@@ -55,6 +55,20 @@
         </Constraint>
 
         <Constraint
+            android:id="@+id/ll_category">
+            <CustomAttribute
+                app:attributeName="ll_category"/>
+            <PropertySet android:visibility="gone"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/ll_center">
+            <CustomAttribute
+                app:attributeName="ll_category_center2"/>
+            <PropertySet android:visibility="visible"/>
+        </Constraint>
+
+        <Constraint
             android:id="@id/swipeLayout"
             app:layout_constraintTop_toBottomOf="parent"
             app:layout_constraintBottom_toBottomOf="@+id/parent"
@@ -69,6 +83,14 @@
                 app:attributeName="cross"
                 app:customColorValue="#175416" />
         </Constraint>
+
+        <Constraint
+            android:id="@id/ll_category">
+            <CustomAttribute
+                app:attributeName="cross"
+                app:customColorValue="#175416" />
+        </Constraint>
+
         <Constraint
             android:id="@id/tvHelloWorld"
             >
@@ -117,6 +139,20 @@
             app:layout_constraintEnd_toEndOf="parent">
             <Transform
                 android:translationY="160dp"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/ll_center">
+            <CustomAttribute
+                app:attributeName="ll_category_center2"/>
+            <PropertySet android:visibility="gone"/>
+        </Constraint>
+
+        <Constraint
+            android:id="@+id/ll_category">
+            <CustomAttribute
+                app:attributeName="ll_category"/>
+            <PropertySet android:visibility="visible"/>
         </Constraint>
     </ConstraintSet>
 

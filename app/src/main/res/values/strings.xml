@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Shopping Flowers</string>
+    <string name="str_flowers">Flowers</string>
+    <string name="str_skip">Skip</string>
+    <string name="str_indicator_intro_desc">Pink roses</string>
+    <string name="str_indicator_intro_body">through the online shopping market</string>
+    <string name="str_indicator_intro_bodyX">any pink you like</string>
+    <string name="str_indicator_intro_bodyXL">buy roses</string>
+    <string name="str_indicator_intro_desc2">Lily flowers</string>
+    <string name="str_indicator_intro_bodyXL2">lily of your choice</string>
+    <string name="str_indicator_intro_desc3">Flower market</string>
+    <string name="str_indicator_intro_bodyX3">the variety you like</string>
+    <string name="language">Language</string>
+    <string name="fruits">Fruits</string>
+    <string name="cakes">Cakes</string>
+    <string name="str_get_started">Get started</string>
+    <string name="str_search">search</string>
 </resources>

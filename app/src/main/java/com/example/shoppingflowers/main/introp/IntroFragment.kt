@@ -85,29 +85,27 @@ class IntroFragment : Fragment(R.layout.fragment_intro) {
         items.add(
             IntroPageItem(
                 R.drawable.rose,
-                "Pushti atirgullar",
-                "onlayn shopping market orqali",
-                "o'zingizga yoqqan pushti",
-                "atirgullarni xarid qiling!"
+                resources.getString(R.string.str_indicator_intro_desc),
+                resources.getString(R.string.str_indicator_intro_body),
+                resources.getString(R.string.str_indicator_intro_bodyX),
+                resources.getString(R.string.str_indicator_intro_bodyXL)
             )
         )
         items.add(
             IntroPageItem(
                 R.drawable.bouquet,
-                "Lilya gullari",
-                "onlayn shopping market orqali",
-                "o'zingizga yoqqan lilya",
-                "gullarini xarid qiling!"
-            )
+                resources.getString(R.string.str_indicator_intro_desc2),
+                resources.getString(R.string.str_indicator_intro_body),
+                resources.getString(R.string.str_indicator_intro_bodyXL2),
+                resources.getString(R.string.str_indicator_intro_bodyXL))
         )
         items.add(
             IntroPageItem(
                 R.drawable.pngegg,
-                "Gullar bozori",
-                "onlayn shopping market orqali",
-                "o'zingizga yoqqan turli xil ",
-                "gullarni xarid qiling"
-            )
+                resources.getString(R.string.str_indicator_intro_desc3),
+                resources.getString(R.string.str_indicator_intro_body),
+                resources.getString(R.string.str_indicator_intro_bodyX3),
+                resources.getString(R.string.str_indicator_intro_bodyX))
         )
         return items
     }

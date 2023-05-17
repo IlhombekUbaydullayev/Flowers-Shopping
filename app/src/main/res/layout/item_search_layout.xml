@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="@dimen/_5sdp"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:gravity="center_horizontal"
+            android:background="@drawable/rounded_corner_center"
+            android:orientation="vertical">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_center"
+                android:layout_width="@dimen/textSize110"
+                android:layout_height="@dimen/textSize110"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/circle"
+                android:src="@drawable/flw2"/>
+            <TextView
+                android:id="@+id/tv_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize12"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:singleLine="true"
+                android:layout_marginTop="8dp"
+                android:textColor="#252424"
+                android:text="Qizil atirgul"/>
+
+            <TextView
+                android:id="@+id/tv_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize10"
+                android:gravity="center"
+                android:singleLine="true"
+                android:layout_marginTop="2dp"
+                android:textColor="#575454"
+                android:text="uzunligi 50 sm"/>
+
+            <TextView
+                android:id="@+id/tv_sum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/textSize11"
+                android:gravity="center"
+                android:singleLine="true"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/pinkDark"
+                android:text="150 ming so'm"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_weight="0.6">
+                <ImageView
+                    android:layout_width="@dimen/textSize16sp"
+                    android:layout_height="@dimen/textSize16sp"
+                    android:src="@drawable/star"/>
+                <ImageView
+                    android:layout_width="@dimen/textSize16sp"
+                    android:layout_height="@dimen/textSize16sp"
+                    android:src="@drawable/star"/>
+                <ImageView
+                    android:layout_width="@dimen/textSize16sp"
+                    android:layout_height="@dimen/textSize16sp"
+                    android:src="@drawable/star"/>
+                <ImageView
+                    android:layout_width="@dimen/textSize16sp"
+                    android:layout_height="@dimen/textSize16sp"
+                    android:src="@drawable/star"/>
+                <ImageView
+                    android:layout_width="@dimen/textSize16sp"
+                    android:layout_height="@dimen/textSize16sp"
+                    android:src="@drawable/star2"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:gravity="left">
+
+        <ImageView
+            android:layout_width="@dimen/textSize20"
+            android:layout_height="@dimen/textSize20"
+            android:src="@mipmap/ic_heart" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:gravity="right|top">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@mipmap/ic_cart" />
+    </FrameLayout>
+</FrameLayout>
