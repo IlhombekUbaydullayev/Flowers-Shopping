@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/introFragment"
-        android:name="com.example.shoppingflowers.main.introp.IntroFragment"
+        android:name="com.boss.shoppingflowers.main.introp.IntroFragment"
         android:label="fragment_introXL"
         tools:layout="@layout/fragment_intro" >
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/introFragmentXL"
-        android:name="com.example.shoppingflowers.main.intro.IntroFragmentXL"
+        android:name="com.boss.shoppingflowers.main.intro.IntroFragmentXL"
         android:label="fragment_introXL"
         tools:layout="@layout/fragment_intro_secondary" >
 

@@ -12,7 +12,7 @@
 
     <fragment
         android:id="@+id/splashFlowFragment"
-        android:name="com.example.shoppingflowers.main.splash.SplashFlowFragment"
+        android:name="com.boss.shoppingflowers.main.splash.SplashFlowFragment"
         android:label="flow_fragment_splash"
         tools:layout="@layout/flow_fragment_splash" />
 
@@ -23,27 +23,16 @@
 
     <fragment
         android:id="@+id/introFlowFragment"
-        android:name="com.example.shoppingflowers.main.IntroFlowFragment"
+        android:name="com.boss.shoppingflowers.main.IntroFlowFragment"
         android:label="flow_fragment_intro"
         tools:layout="@layout/flow_fragment_intro" />
-
-<!--    <action-->
-<!--        android:id="@+id/action_global_introFlowSecond"-->
-<!--        app:destination="@id/introFlowFragment"-->
-<!--        app:popUpTo="@id/nav_graph" />-->
-
-<!--    <fragment-->
-<!--        android:id="@+id/introFlowFragmentXL"-->
-<!--        android:name="com.example.shoppingflowers.main.intro_secondary.IntroFragmentXL"-->
-<!--        android:label="flow_fragment_introXL"-->
-<!--        tools:layout="@layout/flow_fragment_introxl" />-->
     <action
         android:id="@+id/action_global_mainFlowFragment"
         app:destination="@id/mainFlowFragment"
         app:popUpTo="@id/nav_graph" />
     <fragment
         android:id="@+id/mainFlowFragment"
-        android:name="com.example.shoppingflowers.main.MainFlowFragment"
+        android:name="com.boss.shoppingflowers.main.MainFlowFragment"
         android:label="flow_fragment_main"
         tools:layout="@layout/flow_fragment_main" />
 </navigation>

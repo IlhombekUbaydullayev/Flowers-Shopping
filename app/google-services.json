@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "220601736845",
+    "project_id": "flowers-shopping-b6006",
+    "storage_bucket": "flowers-shopping-b6006.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220601736845:android:94d056421bf346dd784cc4",
+        "android_client_info": {
+          "package_name": "com.boss.shoppingflowers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220601736845-e6dbrv1mdbkri59v5p1i2rokq3dg2eqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1YHNty635Q7gyenwGUiSyyN0xT09cRds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220601736845-e6dbrv1mdbkri59v5p1i2rokq3dg2eqg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

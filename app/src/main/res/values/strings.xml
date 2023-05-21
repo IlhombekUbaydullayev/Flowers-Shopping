@@ -15,4 +15,6 @@
     <string name="cakes">Cakes</string>
     <string name="str_get_started">Get started</string>
     <string name="str_search">search</string>
+    <string name="str_search_title">Search</string>
+    <string name="str_search_home">List of stores</string>
 </resources>

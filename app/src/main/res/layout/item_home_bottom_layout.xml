@@ -6,7 +6,7 @@
     android:padding="15dp"
     android:layout_height="wrap_content">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="10dp"
@@ -17,6 +17,7 @@
             android:layout_height="@dimen/textSize110"
             android:layout_weight="0.8">
             <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_body"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -37,7 +38,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1.4">
                 <TextView
-                    android:id="@+id/tv_center"
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textSize12"
@@ -47,7 +48,7 @@
                     android:textColor="#252424"
                     android:text="44 Sodiq Azimov ko'chasi"/>
                 <TextView
-                    android:id="@+id/tv_center2"
+                    android:id="@+id/tv_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textSize12"
@@ -57,7 +58,7 @@
                     android:textColor="@color/app_color_1"
                     android:text="tel: 8 93 509 97 98"/>
                 <TextView
-                    android:id="@+id/tv_bottom3"
+                    android:id="@+id/tv_desc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/textSize11"
@@ -93,6 +94,7 @@
                     android:layout_height="@dimen/textSize16sp"
                     android:src="@drawable/star2"/>
                 <TextView
+                    android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="(42)"

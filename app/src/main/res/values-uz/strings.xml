@@ -16,4 +16,6 @@
     <string name="cakes">Tortlar</string>
     <string name="str_get_started">Boshlash</string>
     <string name="str_search">qidiruv</string>
+    <string name="str_search_title">Qidiruv</string>
+    <string name="str_search_home">Do`konlar ro`yxati : </string>
 </resources>

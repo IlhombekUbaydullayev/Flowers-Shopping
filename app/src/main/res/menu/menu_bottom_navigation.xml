@@ -11,6 +11,7 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
 
+
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/icon_profile"
