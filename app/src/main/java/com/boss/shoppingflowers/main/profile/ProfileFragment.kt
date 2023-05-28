@@ -13,12 +13,13 @@ import com.boss.shoppingflowers.managers.PrefsManager
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val binding by viewBinding(FragmentHomeBinding::bind)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
+    private fun initViews() {
         val cancel = PrefsManager(requireContext()).loadLong()
-//        Toast.makeText(requireContext(),PrefsManager(requireContext()).loadLong(), Toast.LENGTH_SHORT).show()
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if (cancel == "1") {
@@ -30,14 +31,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initViews()
-    }
-
-    private fun initViews() {
-
     }
 
 }

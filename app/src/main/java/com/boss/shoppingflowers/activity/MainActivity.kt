@@ -6,6 +6,7 @@ import androidx.navigation.fragment.NavHostFragment
 import com.boss.shoppingflowers.R
 import com.boss.shoppingflowers.databinding.ActivityMainBinding
 import com.boss.shoppingflowers.managers.AuthManager
+import dagger.hilt.android.AndroidEntryPoint
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -16,6 +17,11 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavigation()
+        initViews()
+    }
+
+    private fun initViews() {
+        window.statusBarColor = resources.getColor(R.color.pink, theme)
     }
 
     private fun setupNavigation() {

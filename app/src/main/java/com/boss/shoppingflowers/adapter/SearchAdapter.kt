@@ -2,40 +2,44 @@ package com.boss.shoppingflowers.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.boss.shoppingflowers.R
+import com.boss.shoppingflowers.databinding.SearchDataBinding
 import com.boss.shoppingflowers.model.Products
-import com.boss.shoppingflowers.modeltest.MemberCenter
 import com.bumptech.glide.Glide
 
-class SearchAdapter(var context: Context, private var items: ArrayList<Products>) :
-    RecyclerView.Adapter<RecyclerView.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_search_layout, parent, false)
-        return SearchViewHolder(view)
+class SearchAdapter(var context : Context): PagingDataAdapter<Products, SearchAdapter.SearchViewHolder>(Companion){
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val dataBinding = SearchDataBinding.inflate(
+            layoutInflater,
+            parent,
+            false)
+        return SearchViewHolder(dataBinding)
     }
 
-    override fun getItemCount(): Int {
-        return items.size
+    override fun onBindViewHolder(holder: SearchViewHolder, position: Int) {
+        val product = getItem(position) ?: return
+        holder.bindProduct(product)
+        Glide.with(context).load(product.image).into(holder.image)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val item = items[position]
-        if (holder is SearchViewHolder) {
-            val tv_center = holder.tvCenter
-            val iv_center = holder.ivCenter
-            tv_center!!.text = item.name
-            Glide.with(context).load(item.image).into(iv_center)
+    companion object : DiffUtil.ItemCallback<Products>() {
+        override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
+            return oldItem == newItem
         }
     }
 
-    class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvCenter = view.findViewById<TextView>(R.id.tv_center)
-        val ivCenter = view.findViewById<ImageView>(R.id.iv_center)
+    inner class SearchViewHolder(private val dataBinding: SearchDataBinding) : RecyclerView.ViewHolder(dataBinding.root) {
+        fun bindProduct(products: Products) {
+            dataBinding.products = products
+        }
+        val image = dataBinding.ivCenter
     }
 }

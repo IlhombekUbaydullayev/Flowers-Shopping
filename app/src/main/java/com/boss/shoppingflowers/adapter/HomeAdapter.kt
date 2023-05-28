@@ -1,6 +1,8 @@
 package com.boss.shoppingflowers.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +15,10 @@ import com.boss.shoppingflowers.main.home.HomeFragment
 import com.boss.shoppingflowers.modeltest.Member
 import com.bumptech.glide.Glide
 
-class HomeAdapter(var context: Context, var fragment : HomeFragment, private var items: ArrayList<Member>) :
+class HomeAdapter(var fragment : HomeFragment, private var items: ArrayList<Member>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    var itemCounts = 0
+    var tv_center : TextView? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_home_layout, parent, false)
@@ -25,19 +29,33 @@ class HomeAdapter(var context: Context, var fragment : HomeFragment, private var
         return items.size
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
         if (holder is HomeViewHolder) {
-            val tv_center = holder.tvCenter
+            tv_center = holder.tvCenter
             val iv_center = holder.ivCenter
             val ll_parent = holder.ll_parent
             tv_center!!.text = item.name
-            Glide.with(context).load(item.image).into(iv_center)
-
+            Glide.with(fragment.requireContext()).load(item.image).into(iv_center)
             ll_parent.setOnClickListener {
+                itemCounts = holder.bindingAdapterPosition
                 fragment.onClick(position)
+                notifyDataSetChanged()
+            }
+            if (itemCountsReturn(itemCounts,position)) {
+                tv_center!!.setTextColor(Color.RED)
+            }else {
+                tv_center!!.setTextColor(Color.BLACK)
             }
         }
+    }
+
+    fun itemCountsReturn(itemCounts: Int, position: Int) : Boolean {
+        if (itemCounts == position) {
+            return true
+        }
+        return false
     }
 
     class HomeViewHolder(view: View) : RecyclerView.ViewHolder(view) {

@@ -1,11 +1,11 @@
 package com.boss.shoppingflowers.main.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -23,25 +23,21 @@ import com.boss.shoppingflowers.managers.handler.DBPostsHandler
 import com.boss.shoppingflowers.model.Markets
 import com.boss.shoppingflowers.model.Products
 import com.boss.shoppingflowers.modeltest.Member
+import java.util.Random
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
-    private var context: Context? = null
     private val binding by viewBinding(FragmentHomeBinding::bind)
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-//        Toast.makeText(requireContext(),PrefsManager(requireContext()).loadLong(),Toast.LENGTH_SHORT).show()
+    private var homeAdapterCenter : HomeAdapterCenter? = null
+    var adapter : HomeAdapter? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 requireActivity().finish()
             }
         }
-        requireActivity().getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback)
+        requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), onBackPressedCallback)
         loadLocale()
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initViews()
         val members = prepareMemerList()
         refreshAdapter(members)
@@ -52,25 +48,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         PrefsManager(requireContext()).storeLong("1")
         binding.apply {
             llV1.setOnClickListener {
-                visibleProgress()
-                tvFlower.setTextColor(Color.RED)
-                tvFlower2.setTextColor(Color.DKGRAY)
-                tvFlower3.setTextColor(Color.DKGRAY)
-                loadMyFeeds(Type.FLOWERS.toString())
+                setColor(0)
             }
             llV2.setOnClickListener {
-                visibleProgress()
-                tvFlower.setTextColor(Color.DKGRAY)
-                tvFlower2.setTextColor(Color.RED)
-                tvFlower3.setTextColor(Color.DKGRAY)
-                loadMyFeeds(Type.CAKES.toString())
+                setColor(1)
             }
             llV3.setOnClickListener {
-                visibleProgress()
-                tvFlower.setTextColor(Color.DKGRAY)
-                tvFlower2.setTextColor(Color.DKGRAY)
-                tvFlower3.setTextColor(Color.RED)
-                loadMyFeeds(Type.FRUITS.toString())
+                setColor(2)
             }
             ivLanguages.setOnClickListener {
                 showChangeDialogLanguage()
@@ -90,11 +74,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun refreshAdapter(members: ArrayList<Member>) {
-        val adapter = HomeAdapter(requireContext(), this, members)
+        adapter = HomeAdapter(this,
+            members)
         binding.rvHome.adapter = adapter
-        adapter.notifyDataSetChanged()
+        adapter?.notifyDataSetChanged()
     }
-
     private fun prepareMemerList(): ArrayList<Member> {
         val members: java.util.ArrayList<Member> = java.util.ArrayList()
         members.add(
@@ -118,9 +102,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         return members
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun refreshAdapterCenter(members: ArrayList<Products>) {
-        val adapter = HomeAdapterCenter(requireContext(), members)
-        binding.rvHome2.adapter = adapter
+        val counter = members.size-1
+        if (counter > 10) {
+            homeAdapterCenter = HomeAdapterCenter(requireContext(),members.subList(0,10))
+        }else {
+            homeAdapterCenter = HomeAdapterCenter(requireContext(),members.subList(0,counter))
+        }
+        binding.rvHome2.adapter = homeAdapterCenter
+        adapter?.notifyDataSetChanged()
     }
 
     private fun loadMarkets() {
@@ -151,25 +142,73 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         })
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun refreshAdapterBottom(members: ArrayList<Markets>) {
         val adapter = HomeAdapterBottom(requireContext(), members)
         binding.rvHome3.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
-    public fun onClick(item : Int) {
+    public fun onClick(item: Int) {
+        Log.d("ItemCounts",item.toString())
         when(item) {
             0 -> {
                 visibleProgress()
                 loadMyFeeds(Type.FLOWERS.toString())
+                setColor(item)
             }
             1 -> {
                 visibleProgress()
                 loadMyFeeds(Type.CAKES.toString())
+                setColor(item)
             }
             2 -> {
                 visibleProgress()
                 loadMyFeeds(Type.FRUITS.toString())
+                setColor(item)
             }
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun setColor(i: Int) {
+        when(i) {
+            0 -> {
+                binding.apply {
+                    visibleProgress()
+                    tvFlower.setTextColor(Color.RED)
+                    tvFlower2.setTextColor(Color.DKGRAY)
+                    tvFlower3.setTextColor(Color.DKGRAY)
+                    loadMyFeeds(Type.FLOWERS.toString())
+                }
+            }
+
+            1 -> {
+                binding.apply {
+                    visibleProgress()
+                    tvFlower.setTextColor(Color.DKGRAY)
+                    tvFlower2.setTextColor(Color.RED)
+                    tvFlower3.setTextColor(Color.DKGRAY)
+                    loadMyFeeds(Type.CAKES.toString())
+                }
+            }
+
+            2 -> {
+                binding.apply {
+                    visibleProgress()
+                    tvFlower.setTextColor(Color.DKGRAY)
+                    tvFlower2.setTextColor(Color.DKGRAY)
+                    tvFlower3.setTextColor(Color.RED)
+                    loadMyFeeds(Type.FRUITS.toString())
+                }
+            }
+        }
+        adapter!!.itemCounts = i
+        adapter!!.notifyDataSetChanged()
+        if (i == adapter!!.itemCounts) {
+            adapter!!.tv_center!!.setTextColor(Color.RED)
+        }else{
+            adapter!!.tv_center!!.setTextColor(Color.BLACK)
         }
     }
 

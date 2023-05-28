@@ -18,10 +18,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            activity?.window?.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+//            activity?.window?.setFlags(
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN
+//        )
         initViews()
     }
 

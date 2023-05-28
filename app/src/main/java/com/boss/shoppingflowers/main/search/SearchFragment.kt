@@ -1,51 +1,59 @@
 package com.boss.shoppingflowers.main.search
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.widget.addTextChangedListener
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.boss.shoppingflowers.BaseFragment
 import com.boss.shoppingflowers.R
 import com.boss.shoppingflowers.adapter.SearchAdapter
 import com.boss.shoppingflowers.databinding.FragmentSearchBinding
-import com.boss.shoppingflowers.managers.DatabaseManager
 import com.boss.shoppingflowers.managers.PrefsManager
-import com.boss.shoppingflowers.managers.handler.DBPostsHandler
-import com.boss.shoppingflowers.model.Products
-import com.boss.shoppingflowers.modeltest.MemberCenter
+import com.boss.shoppingflowers.viewmodels.ProductsViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
-class SearchFragment : Fragment(R.layout.fragment_search) {
+
+@AndroidEntryPoint
+class SearchFragment : BaseFragment(R.layout.fragment_search) {
+
+    lateinit var linearLayoutManage : GridLayoutManager
+    private val viewModel by viewModels<ProductsViewModel>()
+    private var adapter : SearchAdapter? = null
     private val binding by viewBinding(FragmentSearchBinding::bind)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         PrefsManager(requireContext()).storeLong("2")
-//        Toast.makeText(requireContext(),PrefsManager(requireContext()).loadLong(), Toast.LENGTH_SHORT).show()
         val onBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 findNavController().navigate(R.id.action_homeFragment3_to_homeFragment2)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(onBackPressedCallback)
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initViews()
-        getAllProduct()
+        setProductsAdapter()
+        getProducts()
+        setProgressBarAccordingToLoadState()
     }
 
     private fun initViews() {
+        visibleProgress()
+        adapter = SearchAdapter(requireContext())
+        linearLayoutManage = GridLayoutManager(requireContext(),2)
         binding.apply {
-            rvSearch.layoutManager = GridLayoutManager(requireContext(),2)
+            rvSearch.layoutManager = linearLayoutManage
             etSearch.addTextChangedListener(object : TextWatcher {
 
                 override fun afterTextChanged(s: Editable) {}
@@ -57,49 +65,12 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
                 override fun onTextChanged(s: CharSequence, start: Int,
                                            before: Int, count: Int) {
                     if (s.toString().isNotEmpty()) {
-                        loadMyFeeds(s.toString())
+//                        loadMyFeeds(s.toString())
                     }else {
-                        getAllProduct()
                     }
                 }
             })
         }
-    }
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    private fun refreshAdapter(members: ArrayList<Products>) {
-        val adapter = SearchAdapter(requireContext(), members)
-        binding.rvSearch.adapter = adapter
-        adapter.notifyDataSetChanged()
-    }
-
-    private fun loadMyFeeds(manager: String?) {
-        DatabaseManager.searchFeeds(manager!!,object : DBPostsHandler {
-            override fun onSuccess(posts: ArrayList<Products>) {
-                Log.d("posts", posts.toString())
-                goneProgress()
-                refreshAdapter(posts)
-            }
-
-            override fun onError(e: Exception) {
-
-            }
-        })
-    }
-
-    private fun getAllProduct() {
-        DatabaseManager.getAllProduct(object : DBPostsHandler {
-            override fun onSuccess(posts: ArrayList<Products>) {
-                Log.d("posts", posts.toString())
-                refreshAdapter(posts)
-                goneProgress()
-            }
-
-            override fun onError(e: Exception) {
-
-            }
-        })
     }
 
     fun visibleProgress() {
@@ -108,5 +79,27 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
     fun goneProgress() {
         binding.progressBar.visibility = View.GONE
+    }
+
+    private fun setProductsAdapter() {
+        binding.rvSearch.adapter = adapter
+    }
+
+    private fun getProducts() {
+        lifecycleScope.launch {
+            viewModel.flow.collectLatest {
+                adapter?.submitData(it)
+                Log.d("ItemName",adapter?.itemCount.toString())
+            }
+        }
+    }
+
+    private fun setProgressBarAccordingToLoadState() {
+        lifecycleScope.launch {
+            adapter?.loadStateFlow?.collectLatest {
+                binding.progressBar.isVisible = it.append is LoadState.Loading
+                Log.d("ItemName",adapter?.itemCount.toString())
+            }
+        }
     }
 }

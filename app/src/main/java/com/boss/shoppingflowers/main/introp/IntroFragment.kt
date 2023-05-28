@@ -14,12 +14,7 @@ import com.boss.shoppingflowers.databinding.FragmentIntroBinding
 import com.boss.shoppingflowers.extencion.activityNavController
 import com.boss.shoppingflowers.extencion.navigateSafely
 import com.boss.shoppingflowers.managers.AuthManager
-import com.boss.shoppingflowers.managers.DatabaseManager
-import com.boss.shoppingflowers.managers.handler.DBMarketHandler
-import com.boss.shoppingflowers.managers.handler.DBPostHandler
 import com.boss.shoppingflowers.model.IntroPageItem
-import com.boss.shoppingflowers.model.Markets
-import com.boss.shoppingflowers.model.Products
 import com.google.android.material.tabs.TabLayoutMediator
 
 class IntroFragment : Fragment(R.layout.fragment_intro) {

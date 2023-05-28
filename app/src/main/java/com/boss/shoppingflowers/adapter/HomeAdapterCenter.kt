@@ -11,12 +11,12 @@ import com.boss.shoppingflowers.R
 import com.boss.shoppingflowers.model.Products
 import com.bumptech.glide.Glide
 
-class HomeAdapterCenter(var context: Context, private var items: ArrayList<Products>) :
+class HomeAdapterCenter(var context: Context, private var items: MutableList<Products>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.item_home_center_layout, parent, false)
-        return com.boss.shoppingflowers.adapter.HomeAdapterCenter.HomeCenterViewHolder(view)
+        return HomeCenterViewHolder(view)
     }
 
     override fun getItemCount(): Int {
@@ -25,7 +25,7 @@ class HomeAdapterCenter(var context: Context, private var items: ArrayList<Produ
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = items[position]
-        if (holder is com.boss.shoppingflowers.adapter.HomeAdapterCenter.HomeCenterViewHolder) {
+        if (holder is HomeCenterViewHolder) {
             val tv_center = holder.tvCenter
             val iv_center = holder.ivCenter
             val tv_desc = holder.tv_desc

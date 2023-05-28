@@ -4,8 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
+
+@AndroidEntryPoint
 open class BaseActivity : AppCompatActivity() {
     open fun setLocale(language: String) {
         val locale = Locale(language)

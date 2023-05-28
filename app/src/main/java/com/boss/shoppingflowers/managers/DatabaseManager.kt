@@ -7,7 +7,9 @@ import com.boss.shoppingflowers.managers.handler.DBPostHandler
 import com.boss.shoppingflowers.managers.handler.DBPostsHandler
 import com.boss.shoppingflowers.model.Markets
 import com.boss.shoppingflowers.model.Products
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.util.Locale
 
 private var POST_PATH = "products"
@@ -18,12 +20,16 @@ object DatabaseManager {
     @SuppressLint("StaticFieldLeak")
     private var database = FirebaseFirestore.getInstance()
 
+    private lateinit var lastVisible : DocumentSnapshot
+
     fun storePosts(post: Products, handler: DBPostHandler) {
         val reference = database.collection(POST_PATH)
-        reference.document(post.id).set(post).addOnSuccessListener {
-            handler.onSuccess(post)
-        }.addOnFailureListener {
-            handler.onError(it)
+        post.id?.let {
+            reference.document(it).set(post).addOnSuccessListener {
+                handler.onSuccess(post)
+            }.addOnFailureListener {
+                handler.onError(it)
+            }
         }
     }
 
@@ -176,6 +182,65 @@ object DatabaseManager {
                     post.type = type
                     posts.add(post)
                 }
+                handler.onSuccess(posts)
+            } else {
+                handler.onError(it.exception!!)
+            }
+        }
+    }
+
+    fun getAllProductPagable(handler: DBPostsHandler) {
+        val reference = database.collection(POST_PATH)
+        reference.orderBy("name",Query.Direction.ASCENDING).limit(6).get().addOnCompleteListener {
+
+            val posts = ArrayList<Products>()
+            if (it.isSuccessful) {
+                for (document in it.result!!) {
+                    val id = document.getString("id")
+                    val desc = document.getString("desc")
+                    val name = document.getString("name")
+                    val sum = document.getString("sum")
+                    val image = document.getString("image")
+                    val type = document.getString("type")
+                    val post = Products(id!!, image!!, name!!, desc!!, sum!!, type!!)
+                    post.id = id
+                    post.name = name
+                    post.image = image
+                    post.desc = desc
+                    post.sum = sum
+                    post.type = type
+                    posts.add(post)
+                }
+                lastVisible = it.result.documents[it.result.size()-1]
+                handler.onSuccess(posts)
+            } else {
+                handler.onError(it.exception!!)
+            }
+        }
+    }
+
+    fun getAllProductPagable2(handler: DBPostsHandler) {
+        val reference = database.collection(POST_PATH)
+        reference.orderBy("name",Query.Direction.ASCENDING).startAfter(lastVisible).limit(6).get().addOnCompleteListener {
+            val posts = ArrayList<Products>()
+            if (it.isSuccessful) {
+                for (document in it.result!!) {
+                    val id = document.getString("id")
+                    val desc = document.getString("desc")
+                    val name = document.getString("name")
+                    val sum = document.getString("sum")
+                    val image = document.getString("image")
+                    val type = document.getString("type")
+                    val post = Products(id!!, image!!, name!!, desc!!, sum!!, type!!)
+                    post.id = id
+                    post.name = name
+                    post.image = image
+                    post.desc = desc
+                    post.sum = sum
+                    post.type = type
+                    posts.add(post)
+                }
+                lastVisible = it.result.documents[it.result.size()-1]
                 handler.onSuccess(posts)
             } else {
                 handler.onError(it.exception!!)

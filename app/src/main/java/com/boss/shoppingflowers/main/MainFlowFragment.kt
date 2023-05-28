@@ -8,7 +8,7 @@ import com.boss.shoppingflowers.BaseFlowFragment
 import com.boss.shoppingflowers.R
 import com.boss.shoppingflowers.databinding.FlowFragmentMainBinding
 
-class MainFlowFragment : com.boss.shoppingflowers.BaseFlowFragment(
+class MainFlowFragment : BaseFlowFragment(
     R.layout.flow_fragment_main, R.id.nav_host_fragment_main
 ) {
 
