@@ -48,6 +48,7 @@
     <dimen name="textSize150">@dimen/_150sdp</dimen>
     <dimen name="textSize155">@dimen/_155sdp</dimen>
     <dimen name="textSize200">@dimen/_200sdp</dimen>
+    <dimen name="textSize230">@dimen/_230sdp</dimen>
     <dimen name="textSize250">@dimen/_250sdp</dimen>
     <dimen name="textSize260">@dimen/_260sdp</dimen>
     <dimen name="textSize270">@dimen/_270sdp</dimen>

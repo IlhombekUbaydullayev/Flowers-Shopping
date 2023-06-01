@@ -17,4 +17,10 @@
     <string name="str_search">search</string>
     <string name="str_search_title">Search</string>
     <string name="str_search_home">List of stores</string>
+    <string name="cart">Cart</string>
+    <string name="tv_desc">Sayyoramizdagi eng qadimgi atirgul Germaniyaning Xildsxaym shahrini 1000 yildan buyon bezatib turadi.
+Olimlar insonlarning gulga qanday munosabatda bo`lishiga qarab gullarning reaksiyasi o’zgarishini isbotlashgan.
+Dunyodagi eng qimmat gulni taxminan 5 ming dollarga sotib olish mumkin. Bu Malayziya tog`larida o`sadigan va faqat 15 yilda bir gullaydigan oltin orxideya gulidir.
+Yer yuzidagi eng baland gul Indoneziyaning g`ururi sanalmish -Amorphophallus titanumdir. U  yerdan 3 metr balandlikda ko`tariladi. Uning yer osti og`irligi- 50 kilogrammni tashkil etadi va qalinligi 5 metrga yaqin. Ushbu gigant gul o`zidan tuhumning hidiga o`xshash iforni taratadi.</string>
+    <string name="read_more">…Read More</string>
 </resources>

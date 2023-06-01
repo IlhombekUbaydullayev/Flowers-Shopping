@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -19,6 +20,7 @@ import com.boss.shoppingflowers.R
 import com.boss.shoppingflowers.adapter.SearchAdapter
 import com.boss.shoppingflowers.databinding.FragmentSearchBinding
 import com.boss.shoppingflowers.managers.PrefsManager
+import com.boss.shoppingflowers.model.Products
 import com.boss.shoppingflowers.viewmodels.ProductsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -50,8 +52,11 @@ class SearchFragment : BaseFragment(R.layout.fragment_search) {
 
     private fun initViews() {
         visibleProgress()
-        adapter = SearchAdapter(requireContext())
+        adapter = SearchAdapter(requireContext()){onItemClick : Products -> selectedItem(onItemClick)}
         linearLayoutManage = GridLayoutManager(requireContext(),2)
+        val animation =
+            AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down)
+        binding.rvSearch.layoutAnimation = animation
         binding.apply {
             rvSearch.layoutManager = linearLayoutManage
             etSearch.addTextChangedListener(object : TextWatcher {
@@ -71,6 +76,10 @@ class SearchFragment : BaseFragment(R.layout.fragment_search) {
                 }
             })
         }
+    }
+
+    private fun selectedItem(onItemClick: Products) {
+        tansactionToDetailsInCenter(requireContext(),onItemClick)
     }
 
     fun visibleProgress() {

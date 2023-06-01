@@ -23,6 +23,7 @@ import com.boss.shoppingflowers.managers.handler.DBPostsHandler
 import com.boss.shoppingflowers.model.Markets
 import com.boss.shoppingflowers.model.Products
 import com.boss.shoppingflowers.modeltest.Member
+import com.boss.shoppingflowers.utils.DataEntry
 import java.util.Random
 
 class HomeFragment : BaseFragment(R.layout.fragment_home) {
@@ -39,7 +40,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         requireActivity().getOnBackPressedDispatcher().addCallback(requireActivity(), onBackPressedCallback)
         loadLocale()
         initViews()
-        val members = prepareMemerList()
+        val members = DataEntry.prepareMemerList()
         refreshAdapter(members)
     }
 
@@ -79,39 +80,31 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         binding.rvHome.adapter = adapter
         adapter?.notifyDataSetChanged()
     }
-    private fun prepareMemerList(): ArrayList<Member> {
-        val members: java.util.ArrayList<Member> = java.util.ArrayList()
-        members.add(
-            Member(
-                "https://ae04.alicdn.com/kf/Sb561ad725978458b97d7a35c9f7538f1X.jpg_640x640.jpg",
-                resources.getString(R.string.str_flowers)
-            )
-        )
-        members.add(
-            Member(
-                "https://ae04.alicdn.com/kf/Sef4c51849fef4c4fb79976ba891713b0K.jpg_640x640.jpg",
-                resources.getString(R.string.cakes)
-            )
-        )
-        members.add(
-            Member(
-                "https://media.istockphoto.com/id/173255460/photo/assortment-of-fruits.jpg?b=1&s=170667a&w=0&k=20&c=DTUxwA3VoqtIwRHy9mwFi8vFeMlPtrwULj8KJkeiwlE=",
-                resources.getString(R.string.fruits)
-            )
-        )
-        return members
-    }
 
     @SuppressLint("NotifyDataSetChanged")
     private fun refreshAdapterCenter(members: ArrayList<Products>) {
         val counter = members.size-1
         if (counter > 10) {
-            homeAdapterCenter = HomeAdapterCenter(requireContext(),members.subList(0,10))
+            homeAdapterCenter = HomeAdapterCenter(requireContext(),members.subList(0,10)) { seletedItem: Products ->
+                openDetails(
+                    seletedItem
+                )
+            }
         }else {
-            homeAdapterCenter = HomeAdapterCenter(requireContext(),members.subList(0,counter))
+            homeAdapterCenter = HomeAdapterCenter(requireContext(),members.subList(0,counter)) { seletedItem: Products ->
+                openDetails(
+                    seletedItem
+                )
+            }
         }
         binding.rvHome2.adapter = homeAdapterCenter
         adapter?.notifyDataSetChanged()
+    }
+
+    private fun openDetails(seletedItem: Products) {
+        Log.d("seletedItem","P -- $seletedItem")
+        tansactionToDetailsInCenter(requireContext(),seletedItem)
+
     }
 
     private fun loadMarkets() {

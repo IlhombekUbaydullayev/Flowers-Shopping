@@ -37,7 +37,7 @@ class HomeAdapter(var fragment : HomeFragment, private var items: ArrayList<Memb
             val iv_center = holder.ivCenter
             val ll_parent = holder.ll_parent
             tv_center!!.text = item.name
-            Glide.with(fragment.requireContext()).load(item.image).into(iv_center)
+            Glide.with(fragment.requireContext()).load(R.drawable.logo).load(item.image).into(iv_center)
             ll_parent.setOnClickListener {
                 itemCounts = holder.bindingAdapterPosition
                 fragment.onClick(position)

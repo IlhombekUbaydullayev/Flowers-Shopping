@@ -10,7 +10,7 @@ import com.boss.shoppingflowers.databinding.SearchDataBinding
 import com.boss.shoppingflowers.model.Products
 import com.bumptech.glide.Glide
 
-class SearchAdapter(var context : Context): PagingDataAdapter<Products, SearchAdapter.SearchViewHolder>(Companion){
+class SearchAdapter(var context : Context,private val onItemClick : (Products) -> Unit): PagingDataAdapter<Products, SearchAdapter.SearchViewHolder>(Companion){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val dataBinding = SearchDataBinding.inflate(
@@ -24,6 +24,9 @@ class SearchAdapter(var context : Context): PagingDataAdapter<Products, SearchAd
         val product = getItem(position) ?: return
         holder.bindProduct(product)
         Glide.with(context).load(product.image).into(holder.image)
+        holder.llOnclick.setOnClickListener {
+            onItemClick(product)
+        }
     }
 
     companion object : DiffUtil.ItemCallback<Products>() {
@@ -41,5 +44,6 @@ class SearchAdapter(var context : Context): PagingDataAdapter<Products, SearchAd
             dataBinding.products = products
         }
         val image = dataBinding.ivCenter
+        val llOnclick = dataBinding.llOnclick
     }
 }

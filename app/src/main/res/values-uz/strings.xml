@@ -18,4 +18,7 @@
     <string name="str_search">qidiruv</string>
     <string name="str_search_title">Qidiruv</string>
     <string name="str_search_home">Do`konlar ro`yxati : </string>
+    <string name="cart">Cart</string>
+    <string name="tv_desc">Onlayn shopping market orqali o’zingizga ma’qul gullarni xarid xiling bizda skidkalar mavjud.Mavsumning top gullari har bir gullning sifatiga javob beramiz.Bizda yetkazib berish xizmati mavjud. Tug’ilgan kun va shunga o’xshash marosimlar uchun 200+ dan ortiq</string>
+    <string name="read_more">…Read More</string>
 </resources>

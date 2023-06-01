@@ -5,13 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.boss.shoppingflowers.R
 import com.boss.shoppingflowers.model.Products
 import com.bumptech.glide.Glide
 
-class HomeAdapterCenter(var context: Context, private var items: MutableList<Products>) :
+class HomeAdapterCenter(var context: Context, private var items: MutableList<Products>,
+                        private val clickListener: (Products) -> Unit) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view =
@@ -30,10 +32,14 @@ class HomeAdapterCenter(var context: Context, private var items: MutableList<Pro
             val iv_center = holder.ivCenter
             val tv_desc = holder.tv_desc
             val tv_sum = holder.tv_sum
+            val ll_to_details = holder.ll_to_details
             tv_center!!.text = item.name
             tv_desc!!.text = item.desc
             tv_sum!!.text = item.sum
             Glide.with(context).load(item.image).into(iv_center)
+            ll_to_details.setOnClickListener {
+                clickListener(item)
+            }
         }
     }
 
@@ -42,5 +48,6 @@ class HomeAdapterCenter(var context: Context, private var items: MutableList<Pro
         val ivCenter = view.findViewById<ImageView>(R.id.iv_center)
         val tv_desc = view.findViewById<TextView>(R.id.tv_desc)
         val tv_sum = view.findViewById<TextView>(R.id.tv_sum)
+        val ll_to_details = view.findViewById<LinearLayout>(R.id.ll_to_details)
     }
 }
