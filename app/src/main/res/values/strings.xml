@@ -23,4 +23,6 @@ Olimlar insonlarning gulga qanday munosabatda bo`lishiga qarab gullarning reaksi
 Dunyodagi eng qimmat gulni taxminan 5 ming dollarga sotib olish mumkin. Bu Malayziya tog`larida o`sadigan va faqat 15 yilda bir gullaydigan oltin orxideya gulidir.
 Yer yuzidagi eng baland gul Indoneziyaning g`ururi sanalmish -Amorphophallus titanumdir. U  yerdan 3 metr balandlikda ko`tariladi. Uning yer osti og`irligi- 50 kilogrammni tashkil etadi va qalinligi 5 metrga yaqin. Ushbu gigant gul o`zidan tuhumning hidiga o`xshash iforni taratadi.</string>
     <string name="read_more">…Read More</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

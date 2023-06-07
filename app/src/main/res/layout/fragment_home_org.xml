@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#EDEDED"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+       <androidx.core.widget.NestedScrollView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:orientation="vertical">
+
+               <LinearLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginHorizontal="10dp"
+                   android:layout_marginTop="@dimen/_15sdp"
+                   android:background="@drawable/rounded_corner_center"
+                   android:outlineProvider="bounds"
+                   android:elevation="3dp"
+                   android:gravity="center_vertical"
+                   android:paddingStart="@dimen/_10sdp"
+                   android:paddingVertical="3dp"
+                   android:clipToPadding="false">
+                   <TextView
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textSize="@dimen/_16sdp"
+                       android:fontFamily="@font/lato_light"
+                       android:text="Sevimli sovg'alar"
+                       android:textColor="#252424"/>
+               </LinearLayout>
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rv_home2"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10sp"
+                   android:scrollbars="horizontal"
+                   android:paddingHorizontal="5dp"/>
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rv_home3"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="10dp"
+                   android:paddingHorizontal="@dimen/_10sdp"
+                   android:layout_marginBottom="10dp"/>
+           </LinearLayout>
+       </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/fl_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#45000000">
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+    </FrameLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

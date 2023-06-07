@@ -1,5 +1,6 @@
 package com.boss.shoppingflowers.main
 
+import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.ui.setupWithNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,6 +16,15 @@ class MainFlowFragment : BaseFlowFragment(
     private val binding by viewBinding(FlowFragmentMainBinding::bind)
 
     override fun setupNavigation(navController: NavController) {
-        binding.bottomNavigation.setupWithNavController(navController)
+        binding.apply {
+            bottomNavigation.setupWithNavController(navController)
+            navView.setupWithNavController(navController)
+            imageMenu.setOnClickListener {
+                drawerLayout.openDrawer(GravityCompat.START)
+            }
+            navController.addOnDestinationChangedListener { controller, destination, arguments ->
+                textTitle.text = destination.label
+            }
+        }
     }
 }

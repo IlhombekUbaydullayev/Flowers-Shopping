@@ -37,4 +37,18 @@
     <style name="corner">
         <item name="cornerSize">50%</item>
     </style>
+
+    <style name="customRoundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeTopRight">3dp</item>
+        <item name="cornerSizeTopLeft">3dp</item>
+    </style>
+
+    <style name="customRoundedImageViewLeft" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">0dp</item>
+        <item name="cornerSizeTopLeft">3dp</item>
+        <item name="cornerSizeBottomLeft">3dp</item>
+    </style>
 </resources>

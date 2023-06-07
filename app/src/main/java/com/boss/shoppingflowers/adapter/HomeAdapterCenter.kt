@@ -30,12 +30,8 @@ class HomeAdapterCenter(var context: Context, private var items: MutableList<Pro
         if (holder is HomeCenterViewHolder) {
             val tv_center = holder.tvCenter
             val iv_center = holder.ivCenter
-            val tv_desc = holder.tv_desc
-            val tv_sum = holder.tv_sum
             val ll_to_details = holder.ll_to_details
             tv_center!!.text = item.name
-            tv_desc!!.text = item.desc
-            tv_sum!!.text = item.sum
             Glide.with(context).load(item.image).into(iv_center)
             ll_to_details.setOnClickListener {
                 clickListener(item)
@@ -46,8 +42,6 @@ class HomeAdapterCenter(var context: Context, private var items: MutableList<Pro
     class HomeCenterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvCenter = view.findViewById<TextView>(R.id.tv_center)
         val ivCenter = view.findViewById<ImageView>(R.id.iv_center)
-        val tv_desc = view.findViewById<TextView>(R.id.tv_desc)
-        val tv_sum = view.findViewById<TextView>(R.id.tv_sum)
         val ll_to_details = view.findViewById<LinearLayout>(R.id.ll_to_details)
     }
 }
